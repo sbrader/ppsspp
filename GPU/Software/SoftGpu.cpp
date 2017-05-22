@@ -210,7 +210,7 @@ void SoftGPU::CopyToCurrentFboFromDisplayRam(int srcwidth, int srcheight) {
 		u1 = 1.0f;
 	}
 	if (!hasImage) {
-		draw_->Clear(Draw::FB_COLOR_BIT, 0, 0, 0);
+		draw_->BindFramebufferAsRenderTarget(nullptr, { Draw::RPAction::CLEAR, Draw::RPAction::DONT_CARE });
 		return;
 	}
 
