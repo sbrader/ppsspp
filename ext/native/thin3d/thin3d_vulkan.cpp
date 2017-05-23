@@ -1644,8 +1644,10 @@ void VKContext::BindFramebufferAsRenderTarget(Framebuffer *fbo, const RenderPass
 			clear[count].colorAttachment = 0;
 			count++;
 		}
-		VkClearRect rc{ { 0,0,(uint32_t)w,(uint32_t)h }, 0, 1 };
-		vkCmdClearAttachments(cmdBuf, count, clear, 1, &rc);
+		if (count > 0) {
+			VkClearRect rc{ { 0,0,(uint32_t)w,(uint32_t)h }, 0, 1 };
+			vkCmdClearAttachments(cmdBuf, count, clear, 1, &rc);
+		}
 		// We're done.
 		return;
 	}
